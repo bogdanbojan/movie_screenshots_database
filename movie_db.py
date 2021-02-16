@@ -11,7 +11,7 @@ import psycopg2
 con = psycopg2.connect(
         database="IMDb",
         user='postgres',
-        password="abc123tampon",
+        password="*******",
         host="localhost",
         port="5432")
 print("connected to the database, h4ckerman!")
