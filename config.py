@@ -6,7 +6,7 @@ from imdb import IMDb
 connection = psycopg2.connect(
         database="IMDb",
         user='postgres',
-        password="abc123tampon",
+        password="passsword",
         host="localhost",
         port="5432")
 
