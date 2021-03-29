@@ -4,14 +4,10 @@ Program that sorts through my screenshots folder and makes a DB with details abo
 from config import connection, dirs, ia, cursor
 
 
-
-
 def sort_through_movie_folder():
     for file in dirs:
         if 'New folder' not in file:
-            append_movies_to_db(*get_movie_details_from_IMDb_api(file),get_movie_details_from_os(file))
-
-
+            append_movies_to_db(*get_movie_details_from_IMDb_api(file), get_movie_details_from_os(file))
 
 
 def append_movies_to_db(ID, title, directors, year, rating, genre, screenshots_nr):
@@ -30,12 +26,14 @@ def get_movie_details_from_os(file):
 def get_movie_details_from_IMDb_api(file):
     movie = ia.search_movie('{}'.format(file))
 
-    long_title = ia.get_movie(movie[0].getID())['long imdb title']
-    title = ia.get_movie(movie[0].getID())['title']
-    rating = ia.get_movie(movie[0].getID())['rating']
-    directors = ia.get_movie(movie[0].getID())['directors']
-    genre = ia.get_movie(movie[0].getID())['genre']
-    year = ia.get_movie(movie[0].getID())['year']
+    movie_details = ia.get_movie(movie[0].getID())
+
+    long_title = movie_details['long imdb title']
+    title = movie_details['title']
+    rating = movie_details['rating']
+    directors = movie_details['directors']
+    genre = movie_details['genre']
+    year = movie_details['year']
     ID = movie[0].getID()
     return ID, title, directors, year, rating, genre
 
